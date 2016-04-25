@@ -60,7 +60,6 @@ router.route('/users')
 
 router.route('/users/:user_id')
 
-    // get the bear with that id (accessed at GET http://localhost:8080/api/bears/:bear_id)
     	.get(function(req,res) {
 			User.findOne({ _id : req.params.user_id},function(err, users) {
 				if(err)
@@ -72,7 +71,6 @@ router.route('/users/:user_id')
 
         .put(function(req, res) {
 
-        // use our bear model to find the bear we want
        	 User.findOne({ _id : req.params.user_id}, function(err, user) {
 
             	if (err)
@@ -81,9 +79,7 @@ router.route('/users/:user_id')
            		user.name = req.body.name; 
            		user.userName = req.body.userName;
            		user.server = req.body.server;
-             // update the bears info
-
-            // save the bear
+				   
            		 user.save(function(err) {
                	 if (err)
                   	  res.send(err);
@@ -108,9 +104,7 @@ router.route('/users/:user_id')
 
 
 // Register our routes
-
 app.use('/api', router);
-
 app.use(express.static(__dirname + '/public'));
 
 // Start the Server
